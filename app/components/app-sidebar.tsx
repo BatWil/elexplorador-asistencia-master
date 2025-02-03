@@ -27,6 +27,7 @@ import { Switch } from "@/components/ui/switch"
 
 
 
+
 const menuItems = [
   { icon: Home, label: "Dashboard", href: "/" },
   { icon: PieChart, label: "Análisis", href: "/analisis" },
@@ -60,10 +61,14 @@ export function AppSidebar() {
         {/* Header */}
         <div className="p-4">
           <div className="flex items-center gap-3 px-2 mb-4">
-            <Avatar className="h-10 w-10">
-              <AvatarImage src="/placeholder.svg" />
-              <AvatarFallback>EE</AvatarFallback>
-            </Avatar>
+
+
+          <Avatar>
+            <AvatarImage src="https://i.pinimg.com/736x/69/b8/41/69b841b99e0c45554e061725970ffef5.jpg" />
+            <AvatarFallback>NA</AvatarFallback>
+          </Avatar>
+
+
             <div className="flex flex-col overflow-hidden">
               <span className="font-semibold truncate">El Explorador</span>
               <span className="text-xs text-muted-foreground truncate">Wil.dev</span>

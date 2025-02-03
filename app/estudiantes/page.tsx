@@ -38,28 +38,10 @@ export default function StudentsPage() {
   const [totalPoints, setTotalPoints] = useState(0)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
-/*   useEffect(() => {
-    const savedStudents = localStorage.getItem("students")
-    if (savedStudents) {
-      setStudents(
-        JSON.parse(savedStudents, (key, value) => {
-          if (key === "birthDate") return new Date(value)
-          return value
-        }),
-      )
-    }
-  }, [])
-
-  useEffect(() => {
-    const total = students.reduce((sum, student) => sum + student.points, 0)
-    setTotalPoints(total)
-    localStorage.setItem("students", JSON.stringify(students))
-  }, [students]) */
-
 
   useEffect(() => {
     const savedStudents = localStorage.getItem("students")
-    console.log("Estudiantes en localStorage al cargar:", savedStudents)
+    //console.log("Estudiantes en localStorage al cargar:", savedStudents)
     
     if (savedStudents) {
       setStudents(
@@ -71,7 +53,7 @@ export default function StudentsPage() {
   }, [])
   
   useEffect(() => {
-    console.log("Estado actualizado:", students)
+    //console.log("Estado actualizado:", students)
   
     if (students.length > 0) {
       localStorage.setItem("students", JSON.stringify(students))

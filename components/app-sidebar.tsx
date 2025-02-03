@@ -24,7 +24,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 
-import LoginPage from "../app/login-page"
 
 
 
@@ -60,9 +59,8 @@ export function AppSidebar() {
         {/* Header */}
         <div className="p-4">
           <div className="flex items-center gap-3 px-2 mb-4">
-            <Avatar className="h-10 w-10">
-              <AvatarImage src="/placeholder.svg" />
-              <AvatarFallback>EE</AvatarFallback>
+            <Avatar className="h-10 w-10 bg-[#2980b9]">
+              <AvatarFallback>NA</AvatarFallback>
             </Avatar>
             <div className="flex flex-col overflow-hidden">
               <span className="font-semibold truncate">El Explorador</span>
