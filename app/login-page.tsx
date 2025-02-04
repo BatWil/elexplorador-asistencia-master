@@ -36,7 +36,6 @@ export default function LoginPage() {
       if (userType === "admin") {
         if (username === "Administracion" && password === "Power007") {
           toast.success("Inicio de sesión exitoso");
-          
           window.location.href = "/"
         } else {
           throw new Error("Usuario o contraseña incorrectos");
