@@ -1,28 +1,26 @@
-FROM node:18-alpine AS builder
+# Usa la imagen oficial de Node.js basada en Alpine Linux
+FROM node:16-alpine
 
+# Instala Python3, make y g++ para compilar módulos nativos (node-gyp)
+RUN apk add --no-cache python3 make g++
+
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# 1. Copiar solo dependencias primero para cachear
-COPY package.json package-lock.json* ./
+# Copia los archivos de dependencias (package.json y package-lock.json)
+COPY package*.json ./
 
-# 2. Instalar dependencias
-RUN npm ci --prefer-offline --cache .npm_cache
+# Instala las dependencias de forma limpia usando npm ci
+RUN npm ci
 
-# 3. Copiar todo el código
+# Copia el resto del código de la aplicación
 COPY . .
 
-# 4. Build sin montajes complejos (para simplificar)
+# (Opcional) Ejecuta el build de Next.js si tu app requiere un paso de compilación
 RUN npm run build
 
-# 5. Fase de producción
-FROM node:18-alpine AS runner
-WORKDIR /app
-
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package.json ./package.json
-
-ENV NODE_ENV production
+# Expone el puerto en el que se ejecuta la aplicación (por defecto Next.js usa el 3000)
 EXPOSE 3000
 
+# Define el comando para iniciar la aplicación en producción
 CMD ["npm", "start"]
