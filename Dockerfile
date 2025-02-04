@@ -1,23 +1,28 @@
-# Usa una imagen oficial de Node.js (por ejemplo, versión 18 basada en Alpine para que sea más ligera)
-FROM node:18-alpine
+FROM node:18-alpine AS builder
 
-# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copia los archivos de definición de dependencias
-COPY package*.json ./
+# 1. Copiar solo dependencias primero para cachear
+COPY package.json package-lock.json* ./
 
-# Instala las dependencias de forma limpia (usa npm ci si tienes package-lock.json)
-RUN npm ci
+# 2. Instalar dependencias
+RUN npm ci --prefer-offline --cache .npm_cache
 
-# Copia el resto del código de tu aplicación
+# 3. Copiar todo el código
 COPY . .
 
-# Ejecuta el build de la aplicación Next.js
+# 4. Build sin montajes complejos (para simplificar)
 RUN npm run build
 
-# Expone el puerto que utiliza la aplicación (por defecto 3000)
+# 5. Fase de producción
+FROM node:18-alpine AS runner
+WORKDIR /app
+
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+
+ENV NODE_ENV production
 EXPOSE 3000
 
-# Define el comando para iniciar la aplicación en producción
 CMD ["npm", "start"]
