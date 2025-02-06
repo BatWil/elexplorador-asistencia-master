@@ -4,6 +4,8 @@ import "./globals.css";
 import { AppSidebar } from "./components/app-sidebar";
 import { Toaster } from "react-hot-toast";
 import { SidebarProvider } from "./context/SiderbarContext"; // Asegúrate de importar el provider
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
