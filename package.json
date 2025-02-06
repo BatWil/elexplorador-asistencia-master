@@ -10,7 +10,7 @@
     "postinstall": "prisma generate --schema=./prisma/schema.prisma"
   },
 
-    "config": {
+  "config": {
     "unsafe-perm": true
   },
 
