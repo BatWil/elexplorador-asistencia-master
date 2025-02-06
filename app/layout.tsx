@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppSidebar } from "./components/app-sidebar";
+<<<<<<< HEAD
 import { Toaster } from "react-hot-toast";
 import { SidebarProvider } from "./context/SiderbarContext"; // Asegúrate de importar el provider
+=======
+import { Toaster } from "react-hot-toast"; // Importar directamente desde react-hot-toast
+import { SpeedInsights } from "@vercel/speed-insights/next"
+>>>>>>> 2212178 (vercel)
 
 const inter = Inter({ subsets: ["latin"] });
 
