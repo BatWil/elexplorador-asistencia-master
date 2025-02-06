@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Instala dependencias
-RUN npm ci --unsafe-perm --verbose
+RUN npm ci --unsafe-perm --verbose || cat /root/.npm/_logs/*-debug.log
 
 # Copia el resto de los archivos
 COPY . .
