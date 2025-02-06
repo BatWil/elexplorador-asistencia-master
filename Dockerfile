@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # Instala dependencias
-RUN npm ci --unsafe-perm --verbose || cat /root/.npm/_logs/*-debug.log
+RUN npm ci --unsafe-perm --verbose
 
 # Copia el archivo de esquema de Prisma
 COPY prisma/schema.prisma ./prisma/
