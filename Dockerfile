@@ -13,7 +13,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --unsafe-perm --verbose
 
 # Copia el archivo de esquema de Prisma
-COPY prisma/schema.prisma ./prisma/
+COPY prisma/migrations/schema.prisma ./prisma/
 
 # Copia el resto de los archivos
 COPY . .
