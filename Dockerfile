@@ -1,7 +1,10 @@
-FROM node:20.8.1-alpine
+FROM node:20.18.2-alpine
 
 # Instala dependencias del sistema
-RUN apk --no-cache add python3 make g++ libc6-compat git --repository=http://dl-cdn.alpinelinux.org/alpine/latest-stable/main
+RUN apk --no-cache add python3 make g++ libc6-compat git
+
+# Instala PostgreSQL client (psql)
+RUN apk --no-cache add postgresql-client
 
 # Configura el directorio de trabajo
 WORKDIR /app
@@ -13,10 +16,13 @@ COPY package.json package-lock.json ./
 RUN npm ci --unsafe-perm --verbose
 
 # Copia el archivo de esquema de Prisma
-COPY prisma/migrations/schema.prisma ./prisma/
+COPY prisma/schema/schema.prisma ./prisma/schema/
 
 # Copia el resto de los archivos
 COPY . .
+
+# Genera Prisma Client
+RUN npx prisma generate
 
 # Build de Next.js (si aplica)
 RUN npm run build
