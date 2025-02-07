@@ -9,37 +9,35 @@ datasource db {
 }
 
 model Student {
-  id        Int    @id @default(autoincrement())
-  name      String
-  age       Int    @default(1) @db.SmallInt
-  sex       Sex
-  points    Int    @default(0)
-  birthDate DateTime
-
+  id                Int                @id @default(autoincrement())
+  name              String
+  age               Int                @default(1) @db.SmallInt
+  sex               Sex
+  points            Int                @default(0)
+  birthDate         DateTime
   attendanceRecords AttendanceRecord[]
 }
 
 model AttendanceRecord {
   studentId Int
   date      DateTime @map("date")
-  present   Boolean @default(false)
-  bible     Boolean @default(false)
-  notebook  Boolean @default(false)
-  pen       Boolean @default(false)
-  quiz      Int     @default(0) @db.SmallInt
-
-  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  present   Boolean  @default(false)
+  bible     Boolean  @default(false)
+  notebook  Boolean  @default(false)
+  pen       Boolean  @default(false)
+  quiz      Int      @default(0) @db.SmallInt
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
 
   @@id([studentId, date])
 }
 
 model Config {
-  id            Int @id @default(autoincrement())
-  biblePoints   Int @default(0)
+  id             Int @id @default(autoincrement())
+  biblePoints    Int @default(0)
   notebookPoints Int @default(0)
-  penPoints     Int @default(0)
-  quizPoints    Int @default(0)
-  groupGoal     Int @default(1)
+  penPoints      Int @default(0)
+  quizPoints     Int @default(0)
+  groupGoal      Int @default(1)
 }
 
 enum Sex {
