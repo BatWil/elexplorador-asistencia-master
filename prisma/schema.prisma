@@ -1,21 +1,47 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL") // Asegúrate de definir esta variable en Railway
 }
 
+model Student {
+  id        Int    @id @default(autoincrement())
+  name      String
+  age       Int    @default(1) @db.SmallInt
+  sex       Sex
+  points    Int    @default(0)
+  birthDate DateTime
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  attendanceRecords AttendanceRecord[]
+}
+
+model AttendanceRecord {
+  studentId Int
+  date      DateTime @map("date")
+  present   Boolean @default(false)
+  bible     Boolean @default(false)
+  notebook  Boolean @default(false)
+  pen       Boolean @default(false)
+  quiz      Int     @default(0) @db.SmallInt
+
+  student   Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@id([studentId, date])
+}
+
+model Config {
+  id            Int @id @default(autoincrement())
+  biblePoints   Int @default(0)
+  notebookPoints Int @default(0)
+  penPoints     Int @default(0)
+  quizPoints    Int @default(0)
+  groupGoal     Int @default(1)
+}
+
+enum Sex {
+  male
+  female
 }
