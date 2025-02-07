@@ -38,7 +38,7 @@ export default function LoginPage() {
           toast.success("Inicio de sesión exitoso");
           window.location.href = "/"
         } else {
-          throw new Error("Usuario o contraseña incorrectos");
+          throw new Error("Usuario o contraseña incorrectos..");
         }
       } else {
         toast.success("Inicio de sesión como usuario parental");
