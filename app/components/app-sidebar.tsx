@@ -18,7 +18,7 @@ import {
   GraduationCap,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Sidebar, SidebarToggle } from "@/components/ui/sidebar"
+import { Sidebar, SidebarToggle } from "../../components/ui/sidebar"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
