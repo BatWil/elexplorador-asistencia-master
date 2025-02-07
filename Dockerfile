@@ -29,7 +29,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # Migrar Database
-RUN npx prisma migrate deploy
+#RUN npx prisma migrate deploy
 
 # Expone el puerto y ejecuta
 EXPOSE 3000
