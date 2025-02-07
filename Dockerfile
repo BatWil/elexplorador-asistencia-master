@@ -18,6 +18,7 @@ RUN npm ci --unsafe-perm --verbose
 # Copia el archivo de esquema de Prisma
 COPY prisma/schema/schema.prisma ./prisma/schema/
 
+
 # Copia el resto de los archivos
 COPY . .
 
@@ -26,6 +27,9 @@ RUN npx prisma generate
 
 # Build de Next.js (si aplica)
 RUN npm run build
+
+# Migrar Database
+RUN npx prisma migrate deploy
 
 # Expone el puerto y ejecuta
 EXPOSE 3000

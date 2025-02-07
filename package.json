@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npx prisma migrate deploy"
   },
   "config": {
     "unsafe-perm": true
@@ -75,6 +76,6 @@
     "typescript": "^5"
   },
   "prisma": {
-  "schema": "prisma/schema/schema.prisma"
+    "schema": "prisma/schema/schema.prisma"
 }
 }
