@@ -1,7 +1,7 @@
-FROM node:20-alpine
+FROM node:20.8.1-alpine
 
 # Instala dependencias del sistema
-RUN apk add --no-cache python3 make g++ libc6-compat git
+RUN apk --no-cache add python3 make g++ libc6-compat git --repository=http://dl-cdn.alpinelinux.org/alpine/latest-stable/main
 
 # Configura el directorio de trabajo
 WORKDIR /app
