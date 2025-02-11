@@ -70,8 +70,8 @@ export function AppSidebar() {
 
 
             <div className="flex flex-col overflow-hidden">
-              <span className="font-semibold truncate">El Explorador</span>
-              <span className="text-xs text-muted-foreground truncate">Wil.dev</span>
+              <span className="font-semibold truncate">Example.dev</span>
+              <span className="text-xs text-muted-foreground truncate">user.dev</span>
             </div>
           </div>
           <div className="relative">
